@@ -1,5 +1,6 @@
 import { Modern_Antiqua } from "next/font/google";
 import "./globals.css";
+import clsx from "clsx";
 
 const antiqua = Modern_Antiqua({
   subsets: ["latin"],
@@ -15,7 +16,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={antiqua.className}>{children}</body>
+      <body
+        className={clsx(antiqua.className, "bg-background text-foreground")}
+      >
+        {children}
+      </body>
     </html>
   );
 }
