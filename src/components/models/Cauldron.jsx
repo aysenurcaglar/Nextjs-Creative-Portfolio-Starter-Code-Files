@@ -22,7 +22,8 @@ export function Cauldron(props) {
   const modelRef = useRef();
 
   useFrame((state, delta, xrFrame) => {
-    modelRef.current.position.y = -1 + Math.sin(state.clock.elapsedTime) * 0.2;
+    modelRef.current.position.y =
+      -0.5 + Math.sin(state.clock.elapsedTime) * 0.2;
   });
 
   return (
@@ -30,7 +31,7 @@ export function Cauldron(props) {
       {...props}
       ref={modelRef}
       dispose={null}
-      position={[0, -0.3, -0.5]}
+      position={[0.2, 0, -0.5]}
       rotation={[0, -Math.PI / 2, -0.5]}
       scale={[0.8, 0.8, 0.8]}
     >
