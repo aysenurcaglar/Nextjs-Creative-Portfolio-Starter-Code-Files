@@ -10,18 +10,27 @@ Title: Cauldron 3D Enchanted
 
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 
 export function Cauldron(props) {
   const { nodes, materials } = useGLTF(
     "/models/cauldron_3d_enchanted-transformed.glb"
   );
+
+  const modelRef = useRef();
+
+  useFrame((state, delta, xrFrame) => {
+    modelRef.current.position.y = -1 + Math.sin(state.clock.elapsedTime) * 0.2;
+  });
+
   return (
     <group
       {...props}
+      ref={modelRef}
       dispose={null}
-      position={[0, -0.7, -0.5]}
+      position={[0, -0.3, -0.5]}
       rotation={[0, -Math.PI / 2, -0.5]}
       scale={[0.8, 0.8, 0.8]}
     >
